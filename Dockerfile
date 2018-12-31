@@ -50,7 +50,10 @@ RUN apt-get update \
   libnice-dev \
   openwebrtc-gst-plugins-dev \
   kmsjsoncpp-dev \
-  ffmpeg
+  ffmpeg \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 
 COPY . /source
 
@@ -67,9 +70,7 @@ RUN cd /source \
  && find /app/config -type l -exec bash -c 'cp --remove-destination "$(readlink -m "$0")" "$0"' {} \; \
  && rm -rf /source \
  # Remove ipv6 local loop until ipv6 is supported
- && cat /etc/hosts | sed '/::1/d' | tee /etc/hosts > /dev/null \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && cat /etc/hosts | sed '/::1/d' | tee /etc/hosts > /dev/null
 
 ENV GST_DEBUG=Kurento*:5
 ENV PORT=8888
