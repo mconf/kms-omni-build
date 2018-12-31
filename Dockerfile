@@ -54,13 +54,9 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-
 COPY . /source
 
-RUN cd /source \
- && git submodule init \
- && git submodule update --recursive --remote \
- && mkdir /app \
+RUN mkdir /app \
  && cd /app \
  && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON /source \
  && make \
