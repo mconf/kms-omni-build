@@ -8,16 +8,16 @@
 	branch = master
 [submodule "kms-core"]
 	path = kms-core
-	url = https://github.com/mconf/kms-core
-	branch = mconf
+	url = https://github.com/Kurento/kms-core
+	branch = master
 [submodule "kurento-module-creator"]
 	path = kurento-module-creator
 	url = https://github.com/Kurento/kurento-module-creator
 	branch = master
 [submodule "kms-elements"]
 	path = kms-elements
-	url = https://github.com/mconf/kms-elements
-	branch = mconf
+	url = https://github.com/Kurento/kms-elements
+	branch = master
 [submodule "kms-filters"]
 	path = kms-filters
 	url = https://github.com/Kurento/kms-filters
