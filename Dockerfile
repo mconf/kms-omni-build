@@ -69,9 +69,8 @@ RUN mv /source/docker-entrypoint.sh /usr/local/bin/ \
  && cd /app \
  && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON /source \
  && make \
- # convert all links from /source to files
- && find /app/config -type l -exec bash -c 'cp --remove-destination "$(readlink -m "$0")" "$0"' {} \; \
- && rm -rf /source \
+ && make install \
+ && rm -rf /source /app \
  && apt-get -y purge $BUILD_TOOLS $BUILD_DEPENDENCIES \
  && apt-get -y autoremove \
  && apt-get clean \
@@ -79,7 +78,7 @@ RUN mv /source/docker-entrypoint.sh /usr/local/bin/ \
  && rm -rf ~/.m2 \
  # Remove ipv6 local loop until ipv6 is supported
  && cat /etc/hosts | sed '/::1/d' | tee /etc/hosts > /dev/null \
- && chown -R kurento:kurento /app
+ && chown -R kurento:kurento /usr/local/etc/kurento
 
 USER kurento
 
@@ -98,5 +97,5 @@ WORKDIR /app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD ["kurento-media-server/server/kurento-media-server", "--modules-path=.", "--modules-config-path=./config", "--conf-file=./config/kurento.conf.json", "--gst-plugin-path=."]
+CMD ["/usr/local/bin/kurento-media-server", "--modules-path=/usr/local/lib/", "--modules-config-path=/usr/local/etc/kurento/modules/kurento/", "--conf-file=/usr/local/etc/kurento/kurento.conf.json", "--gst-plugin-path=/usr/local/lib/gstreamer-1.5/"]
 
