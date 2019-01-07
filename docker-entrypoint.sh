@@ -2,11 +2,11 @@
 
 rm -f /usr/local/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
 # Generate WebRtcEndpoint configuration
-echo "stunServerAddress=$STUN_IP" >> /usr/local/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
+echo "stunServerAddress=\"$STUN_IP\"" >> /usr/local/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
 echo "stunServerPort=$STUN_PORT" >> /usr/local/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
 
 if [ "$TURN_URL" != "" ]; then
-  echo "turnURL=$TURN_URL" >> /usr/local/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
+  echo "turnURL=\"$TURN_URL\"" >> /usr/local/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini
 fi
 
 rm -f /usr/local/etc/kurento/modules/kurento/BaseRtpEndpoint.conf.ini

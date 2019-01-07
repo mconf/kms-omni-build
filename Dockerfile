@@ -46,7 +46,8 @@ ARG RUNTIME_DEPENDENCIES="curl \
   libboost-thread1.58.0 \
   libboost-log1.58.0 \
   kmsjsoncpp \
-  openwebrtc-gst-plugins"
+  openwebrtc-gst-plugins \
+  openh264-gst-plugins-bad-1.5"
 
 ENV DEBIAN_FRONTEND noninteractive
 
